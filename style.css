@@ -1,0 +1,776 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Permanent+Marker&family=Caveat:wght@400;700&display=swap');
+
+:root {
+    --bg-color: #f6f2ea; /* Warm off-white */
+    --line-blue: #c4d7e6; /* Lined paper blue line */
+    --line-red: #ff527b; /* Lined paper margin line (neon pink tone) */
+    
+    --marker-black: #111111;
+    --neon-pink: #ff007f;
+    --neon-pink-soft: rgba(255, 0, 127, 0.1);
+    --neon-blue: #0070f3; /* OpenSea blue highlight */
+    --neon-blue-soft: rgba(0, 112, 243, 0.1);
+    
+    --font-heading: 'Permanent Marker', 'Ink Free', 'Segoe Print', 'Comic Sans MS', cursive;
+    --font-hand: 'Caveat', 'Segoe Print', 'Comic Sans MS', cursive;
+    --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    
+    --sketch-filter: url(#sketch-border);
+    --doodle-filter: url(#sketch-doodle);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #e5dec9; /* Desktop desk surface color */
+    font-family: var(--font-body);
+    color: var(--marker-black);
+    min-height: 100vh;
+    padding: 40px 20px;
+    overflow-x: hidden;
+    line-height: 1.6;
+    background-image: 
+        radial-gradient(#222 1px, transparent 1px),
+        radial-gradient(#222 1px, #e5dec9 1px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px; /* Subtle desk texture background */
+}
+
+/* Notebook Container */
+.notebook {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--bg-color);
+    border: 4px solid var(--marker-black);
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.15);
+    padding: 60px 40px 60px 110px; /* Extra left padding to clear binder spirals and red margin line */
+    min-height: 1500px;
+    
+    /* Notebook lined paper pattern */
+    background-image: 
+        /* Vertical red margin line */
+        linear-gradient(90deg, transparent 88px, var(--line-red) 88px, var(--line-red) 90px, transparent 90px),
+        /* Horizontal blue lines */
+        repeating-linear-gradient(transparent, transparent 29px, var(--line-blue) 29px, var(--line-blue) 30px);
+    background-size: 100% 100%, 100% 30px;
+    
+    /* Sketchy edge filter */
+    filter: var(--sketch-filter);
+}
+
+/* Notebook Spiral Binding */
+.notebook-holes {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 30px;
+    width: 20px;
+    background-image: radial-gradient(circle at center, #26221c 8px, transparent 9px);
+    background-size: 20px 40px;
+    background-repeat: repeat-y;
+    z-index: 10;
+}
+
+.notebook-wire {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 5px;
+    width: 45px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='45' height='40' viewBox='0 0 45 40'><path d='M 35 20 C 35 3, 2 3, 2 20 C 2 37, 35 37, 35 20' fill='none' stroke='%23222' stroke-width='4' stroke-linecap='round'/></svg>");
+    background-size: 45px 40px;
+    background-repeat: repeat-y;
+    z-index: 11;
+    pointer-events: none;
+}
+
+/* Section Styling */
+section {
+    padding: 80px 0;
+    position: relative;
+}
+
+section:not(:last-of-type) {
+    border-bottom: 2px dashed rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    letter-spacing: 1px;
+    color: var(--marker-black);
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 2.5rem;
+    display: inline-block;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+/* Marker Highlights */
+.highlight-pink {
+    position: relative;
+    z-index: 1;
+}
+.highlight-pink::after {
+    content: '';
+    position: absolute;
+    left: -5px;
+    right: -5px;
+    bottom: 3px;
+    height: 12px;
+    background-color: var(--neon-pink);
+    opacity: 0.7;
+    z-index: -1;
+    transform: rotate(-1.5deg);
+    border-radius: 2px;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    min-height: 80vh;
+    padding-top: 20px;
+}
+
+.hero-content {
+    flex: 1.2;
+    z-index: 5;
+}
+
+.logo-container {
+    margin-bottom: 25px;
+}
+
+.logo-text {
+    font-size: 6rem;
+    line-height: 0.9;
+    font-family: var(--font-heading);
+    color: var(--marker-black);
+    text-transform: uppercase;
+    display: inline-block;
+    position: relative;
+    transform: rotate(-2deg);
+}
+
+.logo-strike {
+    width: 105%;
+    height: 12px;
+    background-color: var(--neon-pink);
+    margin-top: -5px;
+    transform: rotate(1deg);
+    border-radius: 4px;
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+    filter: var(--doodle-filter);
+}
+
+.tagline {
+    font-family: var(--font-hand);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 35px;
+    color: #333;
+    transform: rotate(-0.5deg);
+}
+
+.hero-actions {
+    display: flex;
+    gap: 20px;
+}
+
+/* Buttons */
+.btn {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    padding: 12px 28px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 3px solid var(--marker-black);
+    position: relative;
+    display: inline-block;
+    background-color: transparent;
+    color: var(--marker-black);
+    filter: var(--sketch-filter);
+}
+
+.btn-primary {
+    background-color: var(--marker-black);
+    color: var(--bg-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--neon-pink);
+    color: white;
+    transform: translate(-3px, -3px);
+    box-shadow: 4px 4px 0 var(--marker-black);
+}
+
+.btn-secondary {
+    background-color: transparent;
+}
+
+.btn-secondary:hover {
+    background-color: var(--neon-pink-soft);
+    transform: translate(-3px, -3px);
+    box-shadow: 4px 4px 0 var(--marker-black);
+}
+
+.btn-blue {
+    background-color: transparent;
+}
+
+.btn-blue:hover {
+    background-color: var(--neon-blue-soft);
+    border-color: var(--neon-blue);
+    color: var(--neon-blue);
+    transform: translate(-3px, -3px);
+    box-shadow: 4px 4px 0 var(--marker-black);
+}
+
+/* Featured NFT Container */
+.hero-nft-showcase {
+    flex: 0.8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 4;
+}
+
+.nft-polaroid-frame {
+    background-color: white;
+    padding: 16px 16px 45px 16px;
+    border: 3px solid var(--marker-black);
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.15);
+    transform: rotate(5deg);
+    transition: all 0.3s ease;
+    max-width: 320px;
+    width: 100%;
+    cursor: pointer;
+    filter: var(--sketch-filter);
+}
+
+.nft-polaroid-frame:hover {
+    transform: rotate(1deg) scale(1.03);
+    box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.2);
+}
+
+.nft-polaroid-img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border: 3px solid var(--marker-black);
+}
+
+.nft-polaroid-caption {
+    font-family: var(--font-hand);
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 15px;
+    color: var(--marker-black);
+}
+
+/* About Section */
+.about-content {
+    max-width: 750px;
+}
+
+.about-text {
+    font-family: var(--font-hand);
+    font-size: 1.8rem;
+    line-height: 1.7;
+    color: #222;
+}
+
+/* Traits Section */
+.traits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.trait-card {
+    border: 3px solid var(--marker-black);
+    padding: 24px;
+    background-color: transparent;
+    filter: var(--sketch-filter);
+    transition: transform 0.2s ease;
+}
+
+.trait-card:hover {
+    transform: translateY(-5px);
+}
+
+.trait-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 18px;
+    border-bottom: 2px solid var(--marker-black);
+    padding-bottom: 10px;
+}
+
+.trait-icon {
+    width: 36px;
+    height: 36px;
+    stroke: var(--marker-black);
+    stroke-width: 2.5;
+    fill: none;
+    filter: var(--doodle-filter);
+}
+
+.trait-title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.trait-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.trait-tag {
+    font-family: var(--font-hand);
+    font-size: 1.15rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border: 1.5px solid var(--marker-black);
+    border-radius: 3px;
+    filter: var(--sketch-filter);
+}
+
+.trait-tag.accent {
+    background-color: var(--neon-pink-soft);
+    border-color: var(--neon-pink);
+    color: var(--marker-black);
+}
+
+/* Collection Gallery */
+.gallery-desc {
+    font-family: var(--font-hand);
+    font-size: 1.6rem;
+    margin-bottom: 35px;
+    color: #444;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.gallery-item {
+    aspect-ratio: 1/1;
+    background-color: white;
+    border: 3.5px solid var(--marker-black);
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.25s ease;
+    filter: var(--sketch-filter);
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item:hover {
+    transform: scale(1.08) rotate(2deg);
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.15);
+    z-index: 10;
+}
+
+.gallery-item.featured-item {
+    grid-column: span 2;
+    grid-row: span 2;
+    border-width: 4px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+.gallery-item .overlay-num {
+    position: absolute;
+    bottom: 5px;
+    right: 8px;
+    background-color: white;
+    border: 2px solid var(--marker-black);
+    font-family: var(--font-hand);
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 0 4px;
+    pointer-events: none;
+}
+
+.load-more-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Roadmap (The Next Pages) */
+.roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+.roadmap-card {
+    background-color: white;
+    border: 3px solid var(--marker-black);
+    padding: 30px 24px;
+    position: relative;
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.1);
+    filter: var(--sketch-filter);
+    transition: transform 0.2s ease;
+}
+
+.roadmap-card:nth-child(odd) {
+    transform: rotate(-1.5deg);
+}
+
+.roadmap-card:nth-child(even) {
+    transform: rotate(1.5deg);
+}
+
+.roadmap-card:hover {
+    transform: rotate(0deg) translateY(-5px);
+    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+.roadmap-page {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--neon-pink);
+    margin-bottom: 10px;
+    border-bottom: 2px dashed var(--marker-black);
+    padding-bottom: 5px;
+}
+
+.roadmap-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+}
+
+.roadmap-desc {
+    font-family: var(--font-hand);
+    font-size: 1.4rem;
+    line-height: 1.4;
+    color: #444;
+}
+
+/* Footer */
+footer {
+    padding-top: 60px;
+    text-align: center;
+    border-top: 3px solid var(--marker-black);
+    filter: var(--sketch-filter);
+    margin-top: 80px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-link {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--marker-black);
+    text-decoration: none;
+    position: relative;
+}
+
+.footer-link:hover {
+    color: var(--neon-pink);
+}
+
+.footer-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0;
+    height: 3px;
+    background-color: var(--neon-pink);
+    transition: width 0.2s ease;
+}
+
+.footer-link:hover::after {
+    width: 100%;
+}
+
+.copyright {
+    font-family: var(--font-hand);
+    font-size: 1.3rem;
+    color: #666;
+}
+
+/* Decorative Doodles */
+.doodle-element {
+    position: absolute;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    color: var(--marker-black);
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 2;
+    white-space: nowrap;
+    filter: var(--doodle-filter);
+}
+
+.doodle-text-only {
+    font-family: var(--font-heading);
+}
+
+.doodle-hand-only {
+    font-family: var(--font-hand);
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.doodle-boxed {
+    border: 2px solid var(--marker-black);
+    padding: 4px 8px;
+    background-color: var(--bg-color);
+}
+
+.doodle-circled {
+    border: 2px solid var(--marker-black);
+    border-radius: 50% 45% 52% 48%;
+    padding: 6px 12px;
+}
+
+.doodle-strike-pink {
+    border-bottom: 3.5px solid var(--neon-pink);
+    padding-bottom: 2px;
+}
+
+.doodle-svg {
+    width: 50px;
+    height: 50px;
+    stroke: var(--marker-black);
+    stroke-width: 3;
+    fill: none;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(246, 242, 234, 0.95); /* Semi-transparent notebook off-white */
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background-color: var(--bg-color);
+    border: 4px solid var(--marker-black);
+    padding: 25px 25px 50px 25px;
+    max-width: 550px;
+    width: 100%;
+    box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.2);
+    position: relative;
+    filter: var(--sketch-filter);
+    transform: scale(0.9) rotate(-1deg);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1) rotate(0deg);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    z-index: 10;
+}
+
+.modal-close-btn svg {
+    width: 100%;
+    height: 100%;
+    stroke: var(--marker-black);
+    stroke-width: 4;
+}
+
+.modal-close-btn:hover svg {
+    stroke: var(--neon-pink);
+}
+
+.modal-img-container {
+    border: 3px solid var(--marker-black);
+    width: 100%;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.modal-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+.modal-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.modal-meta {
+    font-family: var(--font-hand);
+    font-size: 1.5rem;
+    color: #444;
+    font-weight: 700;
+}
+
+/* Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsiveness */
+@media (max-width: 900px) {
+    body {
+        padding: 10px;
+    }
+    
+    .notebook {
+        padding: 40px 20px 40px 65px; /* Clear smaller spiral spacing */
+        background-image: 
+            linear-gradient(90deg, transparent 53px, var(--line-red) 53px, var(--line-red) 55px, transparent 55px),
+            repeating-linear-gradient(transparent, transparent 29px, var(--line-blue) 29px, var(--line-blue) 30px);
+    }
+    
+    .notebook-holes {
+        left: 15px;
+        width: 15px;
+        background-size: 15px 40px;
+    }
+    
+    .notebook-wire {
+        left: 2px;
+        width: 30px;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='40' viewBox='0 0 30 40'><path d='M 25 20 C 25 3, 2 3, 2 20 C 2 37, 25 37, 25 20' fill='none' stroke='%23222' stroke-width='4' stroke-linecap='round'/></svg>");
+        background-size: 30px 40px;
+    }
+    
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 50px;
+        min-height: auto;
+    }
+    
+    .logo-text {
+        font-size: 4rem;
+    }
+    
+    .hero-actions {
+        justify-content: center;
+    }
+    
+    .doodle-element {
+        display: none !important; /* Hide background decorative doodles on mobile to keep clean readability */
+    }
+    
+    .traits-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .notebook {
+        padding: 30px 15px 30px 45px;
+        background-image: 
+            linear-gradient(90deg, transparent 38px, var(--line-red) 38px, var(--line-red) 39px, transparent 39px),
+            repeating-linear-gradient(transparent, transparent 29px, var(--line-blue) 29px, var(--line-blue) 30px);
+    }
+    
+    .notebook-holes {
+        left: 8px;
+        width: 12px;
+        background-size: 12px 40px;
+    }
+    
+    .notebook-wire {
+        left: 1px;
+        width: 22px;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='40' viewBox='0 0 22 40'><path d='M 18 20 C 18 3, 2 3, 2 20 C 2 37, 18 37, 18 20' fill='none' stroke='%23222' stroke-width='3.5' stroke-linecap='round'/></svg>");
+        background-size: 22px 40px;
+    }
+    
+    .logo-text {
+        font-size: 3rem;
+    }
+    
+    .tagline {
+        font-size: 1.5rem;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
