@@ -2,11 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- Data Definitions ---
     const featuredNfts = [
-        { id: 'pink', name: 'Par0dy #0731', meta: 'Featured Pink Demon Page', src: 'assets/nft_pink.jpg', isFeatured: true },
-        { id: 'orange', name: 'Par0dy #1902', meta: 'Featured Orange Demon Page', src: 'assets/nft_orange.jpg', isFeatured: true },
-        { id: 'purple', name: 'Par0dy #8142', meta: 'Featured Purple Demon Page', src: 'assets/nft_purple.jpg', isFeatured: true },
-        { id: 'blue', name: 'Par0dy #5910', meta: 'Featured Cobalt Blue Page', src: 'assets/nft_blue.jpg', isFeatured: true },
-        { id: 'red', name: 'Par0dy #9031', meta: 'Featured Crimson Red Page', src: 'assets/nft_red.jpg', isFeatured: true }
+        { id: 'pink', name: 'Par0dy #731', meta: 'Featured Pink Demon Page', src: 'assets/nft_pink.jpg', isFeatured: true },
+        { id: 'orange', name: 'Par0dy #192', meta: 'Featured Orange Demon Page', src: 'assets/nft_orange.jpg', isFeatured: true },
+        { id: 'purple', name: 'Par0dy #814', meta: 'Featured Purple Demon Page', src: 'assets/nft_purple.jpg', isFeatured: true },
+        { id: 'blue', name: 'Par0dy #591', meta: 'Featured Cobalt Blue Page', src: 'assets/nft_blue.jpg', isFeatured: true },
+        { id: 'red', name: 'Par0dy #903', meta: 'Featured Crimson Red Page', src: 'assets/nft_red.jpg', isFeatured: true }
     ];
 
     // Generate list of 84 cropped tiles (6 rows, 14 columns)
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let r = 0; r < 6; r++) {
         for (let c = 0; c < 14; c++) {
             // Stable, realistic page number calculation
-            const pageNum = 1000 + (r * 14 + c) * 89;
+            const pageNum = 1 + (r * 14 + c) * 11;
             gridNfts.push({
                 id: `grid_${r}_${c}`,
                 name: `Page Sketch #${pageNum}`,
